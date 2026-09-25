@@ -1,0 +1,29 @@
+from pynput.mouse import Controller
+import tkinter as tk
+
+root = None
+mouse = Controller()
+
+
+def CreateWindow():
+    global root
+    if root is not None:
+        try:
+            root.destroy()
+        except:
+            pass
+    root = tk.Tk()
+    root.title("Your not Escpaing lol")
+    root.configure(bg="Black")
+    UpdateWindow()
+    root.mainloop()
+
+def UpdateWindow():
+    x, y = mouse.position
+    offsetx = x - 150
+    offsety = y - 75
+    root.geometry(f"300x150+{offsetx}+{offsety}")
+    root.after(1, UpdateWindow)
+
+CreateWindow()
+    
